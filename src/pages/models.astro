@@ -1,0 +1,41 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+---
+
+<Base title="Models">
+  <Breadcrumb items={[
+    { label: 'Oblio Labs', href: '/' },
+    { label: 'Models' },
+  ]} />
+
+  <h1 class="mb-3">Models</h1>
+  <p class="text-text-muted mb-12 max-w-[560px]">
+    We're building small, utility-scoped models for specific tasks — fine-tuned from open foundations like Gemma 4.
+  </p>
+
+  <div class="bg-surface rounded-lg p-8 mb-12">
+    <h2 class="text-lg mb-4">What we're working toward</h2>
+    <div class="space-y-4 text-text-muted">
+      <p>
+        Our models will be focused and practical: domain-specialized adapters trained with LoRA/QLoRA,
+        optimized for specific tasks rather than general capability.
+      </p>
+      <p>
+        Each model release will include full documentation — training methodology, benchmark results against
+        standard evaluations, intended use cases, limitations, and weights available for download.
+      </p>
+    </div>
+  </div>
+
+  <p class="text-sm text-text-muted">
+    No models released yet. Follow our <a href="/research">research</a> for progress updates.
+  </p>
+
+  <div class="mt-16 pt-8 border-t border-border">
+    <p class="text-sm text-text-muted">
+      Read about how we approach model training in our <a href="/research">research</a>,
+      or learn more <a href="/about">about the team</a>.
+    </p>
+  </div>
+</Base>

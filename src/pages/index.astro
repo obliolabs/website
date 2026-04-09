@@ -1,0 +1,75 @@
+---
+import Base from '../layouts/Base.astro';
+import ResearchCard from '../components/ResearchCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('research', ({ data }) => data.status === 'published'))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 2);
+
+const pillars = [
+  {
+    number: '01',
+    title: 'Catastrophic Forgetting',
+    desc: 'Mitigation strategies for continual learning in large language models.',
+  },
+  {
+    number: '02',
+    title: 'Fine-Tuning',
+    desc: 'LoRA, QLoRA, adapter merging, and domain specialization workflows.',
+  },
+  {
+    number: '03',
+    title: 'Real Implementations',
+    desc: 'Working toward usable tools, reproducible experiments, and open-source contributions.',
+  },
+];
+---
+
+<Base title="Home">
+  <section class="mb-20">
+    <h1 class="mb-4">Practical research on what AI forgets</h1>
+    <p class="text-text-muted text-lg leading-relaxed max-w-[560px]">
+      We study catastrophic forgetting and fine-tuning in large language models,
+      and build practical tools around what we learn.
+    </p>
+    <div class="flex gap-4 mt-8">
+      <a href="/research" class="text-sm font-medium">Read our research &rarr;</a>
+      <a href="https://github.com/obliolabs" class="text-sm text-text-muted hover:text-text transition-colors duration-300">GitHub &nearr;</a>
+    </div>
+  </section>
+
+  <section class="mb-20">
+    <div class="space-y-8">
+      {pillars.map(({ number, title, desc }) => (
+        <div class="flex gap-5">
+          <span class="font-mono text-sm text-text-muted mt-0.5">{number}</span>
+          <div>
+            <h3 class="text-lg mb-1">{title}</h3>
+            <p class="text-text-muted">{desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {posts.length > 0 && (
+    <section>
+      <h2 class="text-lg mb-2">Latest from research</h2>
+      <div class="divide-y divide-border">
+        {posts.map((post) => (
+          <ResearchCard
+            id={post.id}
+            title={post.data.title}
+            date={post.data.date}
+            abstract={post.data.abstract}
+            tags={post.data.tags}
+          />
+        ))}
+      </div>
+      <a href="/research" class="text-sm text-text-muted hover:text-text transition-colors duration-300 mt-4 inline-block">
+        View all research &rarr;
+      </a>
+    </section>
+  )}
+</Base>

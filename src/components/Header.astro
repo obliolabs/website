@@ -1,0 +1,32 @@
+---
+const pathname = Astro.url.pathname;
+
+const links = [
+  { href: '/research', label: 'Research' },
+  { href: '/models', label: 'Models' },
+  { href: '/about', label: 'About' },
+];
+---
+
+<header class="w-full max-w-[680px] mx-auto px-6 pt-10 pb-6">
+  <nav class="flex items-baseline justify-between">
+    <a href="/" class="font-serif text-lg font-medium tracking-tight">
+      oblio labs
+    </a>
+    <div class="flex gap-6 text-sm text-text-muted">
+      {links.map(({ href, label }) => (
+        <a
+          href={href}
+          class:list={[
+            'transition-colors duration-300',
+            pathname.startsWith(href)
+              ? 'text-text'
+              : 'text-text-muted hover:text-text',
+          ]}
+        >
+          {label}
+        </a>
+      ))}
+    </div>
+  </nav>
+</header>

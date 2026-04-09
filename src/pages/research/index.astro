@@ -1,0 +1,43 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import ResearchCard from '../../components/ResearchCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('research', ({ data }) => data.status === 'published'))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<Base title="Research">
+  <Breadcrumb items={[
+    { label: 'Oblio Labs', href: '/' },
+    { label: 'Research' },
+  ]} />
+
+  <h1 class="mb-3">Research</h1>
+  <p class="text-text-muted mb-12">
+    Experiments, findings, and tools from our work on catastrophic forgetting and fine-tuning.
+  </p>
+
+  {posts.length > 0 ? (
+    <div class="divide-y divide-border">
+      {posts.map((post) => (
+        <ResearchCard
+          id={post.id}
+          title={post.data.title}
+          date={post.data.date}
+          abstract={post.data.abstract}
+          tags={post.data.tags}
+        />
+      ))}
+    </div>
+  ) : (
+    <p class="text-text-muted">No published research yet. Check back soon.</p>
+  )}
+
+  <div class="mt-16 pt-8 border-t border-border">
+    <p class="text-sm text-text-muted">
+      Interested in our work? See our <a href="/models">models</a> or learn more <a href="/about">about us</a>.
+    </p>
+  </div>
+</Base>

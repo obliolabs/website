@@ -1,0 +1,20 @@
+---
+interface Props {
+  items: { label: string; href?: string }[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb" class="text-sm text-text-muted mb-10">
+  {items.map((item, i) => (
+    <>
+      {i > 0 && <span class="mx-2">&rarr;</span>}
+      {item.href ? (
+        <a href={item.href} class="hover:text-text transition-colors duration-300">{item.label}</a>
+      ) : (
+        <span class="text-text">{item.label}</span>
+      )}
+    </>
+  ))}
+</nav>

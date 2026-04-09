@@ -1,0 +1,43 @@
+---
+title: "Introducing Oblio Labs"
+date: 2026-04-03
+abstract: "Why we started a research lab around catastrophic forgetting in LoRA fine-tuning — and the open questions we're investigating first."
+authors: ["Davide", "Alessandro"]
+tags: ["announcement", "catastrophic-forgetting", "lora"]
+---
+
+## Why "Oblio"?
+
+The name comes from the Italian word *oblìo* — oblivion. More specifically, from *oblìo catastrofico*: catastrophic forgetting, the phenomenon where neural networks lose previously learned knowledge when trained on new tasks.
+
+Since Kirkpatrick et al. first formalized Elastic Weight Consolidation (2017), the field has produced a range of mitigation strategies — replay buffers, progressive networks, regularization-based approaches. But most of this work targets full-parameter training. The question we keep coming back to is: **how well do these techniques transfer to low-rank adaptation?**
+
+LoRA and QLoRA have become the default for domain specialization. Teams fine-tune a base model for medical QA, then legal QA, then customer support — and silently lose performance on earlier tasks. The failure mode is real and underexplored in the context of adapter-based training.
+
+## What we're investigating
+
+Our first project is a **systematic comparison of continual learning techniques applied to LoRA fine-tuning**. The setup:
+
+- Fine-tune a base model (Gemma 4) with LoRA on Task A
+- Then fine-tune on Task B using the same adapter
+- Measure Task A degradation across standard benchmarks
+- Apply and compare mitigation strategies
+
+The techniques we're evaluating:
+
+- **EWC regularization** — effective for full models, but we suspect the low-rank constraint changes the dynamics. Does penalizing weight changes work when you only have a fraction of the parameters?
+- **Replay buffers** — straightforward but expensive. We want to find the minimum replay ratio that preserves performance.
+- **Adapter merging** (TIES, DARE, SLERP) — train separate adapters per task and merge post-hoc. This sidesteps forgetting entirely but introduces interference. How much?
+- **Progressive adapters** — separate adapters per task, merged strategically. Clean in theory, but scaling to many tasks is an open problem.
+
+We'll publish our methodology, benchmarks, and code as the work progresses.
+
+## Who this is for
+
+If you're building systems that fine-tune models across multiple domains sequentially — multi-tenant platforms, vertical AI products, domain-specific assistants — catastrophic forgetting is likely already affecting your outputs. You may not have noticed because it degrades silently.
+
+We're building toward practical tools and reproducible benchmarks for this exact scenario. Not general-purpose continual learning theory, but focused tooling for the LoRA fine-tuning workflow most teams actually use.
+
+## Follow along
+
+We publish research, experiments, and tools here. Code and datasets are on [GitHub](https://github.com/obliolabs).

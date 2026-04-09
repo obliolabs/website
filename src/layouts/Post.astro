@@ -1,0 +1,59 @@
+---
+import Base from './Base.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+interface Props {
+  title: string;
+  date: Date;
+  authors: string[];
+  tags?: string[];
+}
+
+const { title, date, authors, tags } = Astro.props;
+
+const iso = date.toISOString().split('T')[0];
+const formatted = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'UTC',
+}).format(date);
+---
+
+<Base title={title}>
+  <article>
+    <Breadcrumb items={[
+      { label: 'Oblio Labs', href: '/' },
+      { label: 'Research', href: '/research' },
+      { label: title },
+    ]} />
+
+    <header class="mb-12">
+      <h1 class="mb-3">{title}</h1>
+      <div class="flex items-center gap-3 text-sm text-text-muted">
+        <time datetime={iso} class="font-mono">{formatted}</time>
+        <span>&middot;</span>
+        <span>{authors.join(' & ')}</span>
+      </div>
+      {tags && tags.length > 0 && (
+        <div class="flex gap-2 mt-4">
+          {tags.map((tag) => (
+            <span class="text-xs font-mono text-text-muted bg-surface px-2 py-0.5 rounded">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <div class="prose">
+      <slot />
+    </div>
+
+    <footer class="mt-16 pt-8 border-t border-border">
+      <a href="/research" class="text-sm text-text-muted hover:text-text transition-colors duration-300">
+        &larr; Back to all research
+      </a>
+    </footer>
+  </article>
+</Base>

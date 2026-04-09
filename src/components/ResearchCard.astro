@@ -1,0 +1,38 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  date: Date;
+  abstract: string;
+  tags?: string[];
+}
+
+const { id, title, date, abstract, tags } = Astro.props;
+
+const iso = date.toISOString().split('T')[0];
+const formatted = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'UTC',
+}).format(date);
+---
+
+<article class="group py-6">
+  <a href={`/research/${id}`} class="block">
+    <time datetime={iso} class="text-sm text-text-muted font-mono">{formatted}</time>
+    <h3 class="font-serif text-xl font-medium mt-1 mb-2 group-hover:underline group-hover:underline-offset-4 group-hover:decoration-1">
+      {title}
+    </h3>
+    <p class="text-text-muted leading-relaxed">{abstract}</p>
+    {tags && tags.length > 0 && (
+      <div class="flex gap-2 mt-3">
+        {tags.map((tag) => (
+          <span class="text-xs font-mono text-text-muted bg-surface px-2 py-0.5 rounded">
+            {tag}
+          </span>
+        ))}
+      </div>
+    )}
+  </a>
+</article>

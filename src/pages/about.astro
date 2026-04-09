@@ -1,0 +1,102 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+---
+
+<Base title="About">
+  <Breadcrumb items={[
+    { label: 'Oblio Labs', href: '/' },
+    { label: 'About' },
+  ]} />
+
+  <h1 class="mb-3">About</h1>
+  <p class="text-text-muted mb-12 max-w-[560px]">
+    A small research lab with a specific focus.
+  </p>
+
+  <section class="mb-16">
+    <h2 class="text-lg mb-4">The name</h2>
+    <p class="text-text-muted leading-relaxed">
+      <em>Oblìo</em> is Italian for <em>oblivion</em>. The full term — <em>oblìo catastrofico</em> —
+      translates to <em>catastrophic forgetting</em>, the phenomenon where neural networks lose previously
+      learned knowledge when trained on new tasks. It's the core problem we study.
+    </p>
+  </section>
+
+  <section class="mb-16">
+    <h2 class="text-lg mb-4">Team</h2>
+    <div class="space-y-6">
+      <div>
+        <h3 class="font-sans text-base font-medium">Davide</h3>
+        <p class="text-text-muted text-sm">Co-founder</p>
+      </div>
+      <div>
+        <h3 class="font-sans text-base font-medium">Alessandro</h3>
+        <p class="text-text-muted text-sm">Co-founder</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mb-16">
+    <h2 class="text-lg mb-4">What we do</h2>
+    <p class="text-text-muted leading-relaxed">
+      We study why fine-tuned language models lose previously learned capabilities, and we're building tools
+      to prevent it. Our work spans continual learning strategies, LoRA/QLoRA adapter workflows,
+      and open-source tooling — with a focus on reproducible experiments and open results.
+    </p>
+  </section>
+
+  <section class="mb-16">
+    <h2 class="text-lg mb-4">Infrastructure</h2>
+    <p class="text-text-muted mb-6">
+      We run experiments on a mix of local hardware and cloud compute.
+    </p>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-border text-left">
+            <th class="pb-3 font-mono font-medium text-text-muted">Machine</th>
+            <th class="pb-3 font-mono font-medium text-text-muted">Specs</th>
+            <th class="pb-3 font-mono font-medium text-text-muted">Use</th>
+          </tr>
+        </thead>
+        <tbody class="text-text-muted">
+          <tr class="border-b border-border">
+            <td class="py-3">MacBook Pro M4 Pro</td>
+            <td class="py-3">24 GB unified</td>
+            <td class="py-3">Dev, prototyping, small inference</td>
+          </tr>
+          <tr class="border-b border-border">
+            <td class="py-3">MacBook Pro M5 Pro</td>
+            <td class="py-3">48 GB unified</td>
+            <td class="py-3">Medium inference, local experiments</td>
+          </tr>
+          <tr class="border-b border-border">
+            <td class="py-3">Workstation</td>
+            <td class="py-3">NVIDIA RTX 4000, 24 GB</td>
+            <td class="py-3">LoRA/QLoRA fine-tuning, training</td>
+          </tr>
+          <tr class="border-b border-border">
+            <td class="py-3">Cloud</td>
+            <td class="py-3">On-demand GPUs/TPUs</td>
+            <td class="py-3">Large-scale training</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="text-lg mb-4">Contact</h2>
+    <p class="text-text-muted">
+      For collaboration inquiries, reach us at
+      <a href="mailto:info@obliolabs.com">info@obliolabs.com</a>.
+    </p>
+  </section>
+
+  <div class="mt-16 pt-8 border-t border-border">
+    <p class="text-sm text-text-muted">
+      See what we're working on: <a href="/research">research</a> &middot; <a href="/models">models</a>
+    </p>
+  </div>
+</Base>
