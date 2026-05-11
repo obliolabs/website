@@ -11,14 +11,34 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-
+*.log
 
 # environment variables
 .env
 .env.production
+.env.local
+.env.*.local
+.env.development
 
-# macOS-specific files
+# OS
 .DS_Store
+Thumbs.db
 
-# jetbrains setting folder
+# editor / tooling
 .idea/
+.vscode/
+.serena/
+.claude/
+
+# cache / build artifacts
+.cache/
+.vite/
+*.tsbuildinfo
+
+# deploy adapters
+.vercel/
+.netlify/
+.wrangler/
+
+# coverage
+coverage/
