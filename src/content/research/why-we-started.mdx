@@ -1,0 +1,39 @@
+---
+title: "Why we started Oblio Labs"
+date: 2026-04-03
+abstract: "Catastrophic forgetting is well studied for full-parameter training. We want to know how much of that work survives the move to LoRA."
+authors: ["Davide", "Alessandro"]
+tags: ["announcement", "catastrophic-forgetting", "lora"]
+---
+
+Train a network on a new task and it gives up ground on the old one. Italian names this *oblìo catastrofico*, catastrophic forgetting, and that is where the lab's name comes from.
+
+Kirkpatrick et al. formalized Elastic Weight Consolidation in 2017, and the field has produced plenty since: replay buffers, progressive networks, and a family of regularization methods. Almost all of it assumes full-parameter training.
+
+Meanwhile LoRA and QLoRA became the default way to specialize a model. A team fine-tunes a base model for medical QA, then for legal QA, then for customer support, and the earlier tasks degrade without anyone filing a bug. So which of those results still hold when the update is a low-rank adapter?
+
+## What we're investigating
+
+Our first project is a systematic comparison of continual learning techniques applied to LoRA fine-tuning. The setup:
+
+- Fine-tune a base model (Gemma 4) with LoRA on Task A
+- Fine-tune the same adapter on Task B
+- Measure Task A degradation across standard benchmarks
+- Apply the mitigations and measure again
+
+The techniques we're evaluating:
+
+- **EWC regularization.** It works on full models. Whether penalizing weight drift means anything when the update is confined to a low-rank subspace is less clear.
+- **Replay buffers.** Straightforward and expensive. We want the minimum replay ratio that still holds performance.
+- **Adapter merging** (TIES, DARE, SLERP). Train one adapter per task and merge afterwards. That trades forgetting for interference, and we want to know the exchange rate.
+- **Progressive adapters.** Clean in theory. Scaling past a handful of tasks is the open problem.
+
+Methodology, benchmarks, and code go out as the work progresses.
+
+## Who this is for
+
+If you fine-tune across several domains in sequence, for a multi-tenant platform or a vertical product, forgetting is probably already in your outputs. It does not throw an error. It makes the model worse at something you stopped testing.
+
+We're building benchmarks and tooling for that case. A general theory of continual learning is someone else's project.
+
+New work lands here and on [GitHub](https://github.com/obliolabs).
