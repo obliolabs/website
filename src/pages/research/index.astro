@@ -16,7 +16,7 @@ const posts = (await getCollection('research', ({ data }) => data.status === 'pu
 
   <h1 class="mb-3">Research</h1>
   <p class="text-text-muted mb-12">
-    Experiments, findings, and tools from our work on catastrophic forgetting and fine-tuning.
+    Experiments and results from our work on catastrophic forgetting in fine-tuned models.
   </p>
 
   {posts.length > 0 ? (
@@ -32,12 +32,6 @@ const posts = (await getCollection('research', ({ data }) => data.status === 'pu
       ))}
     </div>
   ) : (
-    <p class="text-text-muted">No published research yet. Check back soon.</p>
+    <p class="text-text-muted">Nothing published yet.</p>
   )}
-
-  <div class="mt-16 pt-8 border-t border-border">
-    <p class="text-sm text-text-muted">
-      Interested in our work? See our <a href="/models">models</a> or learn more <a href="/about">about us</a>.
-    </p>
-  </div>
 </Base>

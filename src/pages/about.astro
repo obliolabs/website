@@ -11,15 +11,15 @@ import Breadcrumb from '../components/Breadcrumb.astro';
 
   <h1 class="mb-3">About</h1>
   <p class="text-text-muted mb-12 max-w-[560px]">
-    A small research lab with a specific focus.
+    A two-person lab working on catastrophic forgetting in fine-tuned language models.
   </p>
 
   <section class="mb-16">
     <h2 class="text-lg mb-4">The name</h2>
     <p class="text-text-muted leading-relaxed">
-      <em>Oblìo</em> is Italian for <em>oblivion</em>. The full term — <em>oblìo catastrofico</em> —
-      translates to <em>catastrophic forgetting</em>, the phenomenon where neural networks lose previously
-      learned knowledge when trained on new tasks. It's the core problem we study.
+      <em>Oblìo</em> is Italian for <em>oblivion</em>; <em>oblìo catastrofico</em> is the standard
+      rendering of catastrophic forgetting. We took the name from the effect itself: capability
+      acquired earlier does not survive the training that comes later.
     </p>
   </section>
 
@@ -40,9 +40,9 @@ import Breadcrumb from '../components/Breadcrumb.astro';
   <section class="mb-16">
     <h2 class="text-lg mb-4">What we do</h2>
     <p class="text-text-muted leading-relaxed">
-      We study why fine-tuned language models lose previously learned capabilities, and we're building tools
-      to prevent it. Our work spans continual learning strategies, LoRA/QLoRA adapter workflows,
-      and open-source tooling — with a focus on reproducible experiments and open results.
+      We take continual learning strategies built for full-parameter training and test whether they hold
+      up on LoRA and QLoRA adapters. Most of the work is measurement: forgetting is easy to describe and
+      hard to quantify.
     </p>
   </section>
 
@@ -89,14 +89,7 @@ import Breadcrumb from '../components/Breadcrumb.astro';
   <section>
     <h2 class="text-lg mb-4">Contact</h2>
     <p class="text-text-muted">
-      For collaboration inquiries, reach us at
-      <a href="mailto:info@obliolabs.com">info@obliolabs.com</a>.
+      Write to us at <a href="mailto:info@obliolabs.com">info@obliolabs.com</a>.
     </p>
   </section>
-
-  <div class="mt-16 pt-8 border-t border-border">
-    <p class="text-sm text-text-muted">
-      See what we're working on: <a href="/research">research</a> &middot; <a href="/models">models</a>
-    </p>
-  </div>
 </Base>
