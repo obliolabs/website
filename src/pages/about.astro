@@ -49,7 +49,7 @@ import Breadcrumb from '../components/Breadcrumb.astro';
   <section class="mb-16">
     <h2 class="text-lg mb-4">Infrastructure</h2>
     <p class="text-text-muted mb-6">
-      We run experiments on a mix of local hardware and cloud compute.
+      We develop and test on local hardware, and rent cloud capacity when a model needs to run in production.
     </p>
     <div class="overflow-x-auto">
       <table class="w-full text-sm">
@@ -73,13 +73,18 @@ import Breadcrumb from '../components/Breadcrumb.astro';
           </tr>
           <tr class="border-b border-border">
             <td class="py-3">Workstation</td>
-            <td class="py-3">NVIDIA RTX 4000, 24 GB</td>
-            <td class="py-3">LoRA/QLoRA fine-tuning, training</td>
+            <td class="py-3">NVIDIA RTX PRO 4000 Blackwell, 24 GB</td>
+            <td class="py-3">Fine-tuning and inference on small models</td>
+          </tr>
+          <tr class="border-b border-border">
+            <td class="py-3">Workstation</td>
+            <td class="py-3">NVIDIA RTX PRO 6000 Blackwell, 96 GB</td>
+            <td class="py-3">QLoRA fine-tuning up to 70B, local inference</td>
           </tr>
           <tr class="border-b border-border">
             <td class="py-3">Cloud</td>
             <td class="py-3">On-demand GPUs/TPUs</td>
-            <td class="py-3">Large-scale training</td>
+            <td class="py-3">Production runs, rented as needed</td>
           </tr>
         </tbody>
       </table>
